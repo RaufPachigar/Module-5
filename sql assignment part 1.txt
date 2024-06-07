@@ -1,0 +1,107 @@
+/*1. Create Table Name : Student and Exam*/
+create table student(
+roll_no int primary key
+,name varchar(30),
+branch varchar(50)
+);
+
+insert into student(roll_no ,name,branch)
+values(1,'Rauf','CS'),
+(2,'Deepika','EC'),
+(3,'Vimal','IT');
+
+select * from student
+
+create table exam(roll_no int ,S_code varchar(30) Not Null,marks int,P_code varchar(20),
+ foreign key (roll_no) REFERENCES student(roll_no));
+
+insert into exam(roll_no,S_code,marks,P_code)
+values(1,'CS11',50,'CS'),
+(2,'IT11',60,'IT'),
+(3,'ME11',70,'ME');
+
+select * from exam
+
+
+
+--2. Create table given below: Employee and IncentiveTable
+
+CREATE TABLE Employee1 (
+	employee_Id INT ,
+	First_name VARCHAR(20),
+	Last_name VARCHAR(20),
+	Salary INT,
+	Joining_Date DATE,
+	Department VARCHAR(20),
+);
+
+insert into Employee1(
+employee_Id,
+First_name,
+Last_name,
+Salary,
+Joining_Date,
+Department)
+values(1,'john','Abraham',1000000,'1-JAN-13 12:00:00 Am','Banking'),
+(2,'Michael','clarke',800000,'1-JAN-13 12:00:00 Am','Insurance'),
+(3,'Roy','thomas',700000,'1-FEB-13 12:00:00 Am','Banking'),
+(4,'Tom','jose',600000,'1-FEB-13 12:00:00 Am','Insurance'),
+(5,'Jerry','pinto',650000,'1-FEB-13 12:00:00 Am','Insurance'),
+(6,'philip','Mathew',750000,'1-JAN-13 12:00:00 Am','Services'),
+(7,'Testname1','123',650000,'1-JAN-13 12:00:00 Am','Services'),
+(8,'john','Lname%',600000,'1-JAN-13 12:00:00 Am','Insurance');
+
+
+create table Incentive(
+Employee_ref_id int,
+Incentive_date date,
+Incentive_amount int);
+
+select * from Incentive
+
+insert into Incentive(
+Employee_ref_id,
+Incentive_date,
+Incentive_amount)
+values(1,'01-FEB-13',5000),
+(2,'01-FEB-13',3000),
+(3,'01-FEB-13',4000),
+(1,'01-JAN-13',4500),
+(2,'01-JAN-13',3500);
+
+select First_name from Employee1 where First_name='Tom';
+
+select First_name,Joining_Date,Salary from Employee1;
+
+select * from Employee1 order by First_name ASC;
+
+select * from Employee1 order by Salary DESC;
+
+SELECT * 
+FROM Employee1
+WHERE first_name LIKE '%J%';
+
+SELECT Department, MAX(salary) AS max_salary
+FROM Employee1
+GROUP BY Department
+ORDER BY max_salary DESC;
+
+select Salary from Employee1 order by Salary asc
+
+SELECT Employee1.First_name, Incentive.Incentive_amount
+FROM Employee1
+INNER JOIN Incentive  ON Employee1.employee_Id= Incentive.Employee_ref_id
+WHERE Incentive.Incentive_amount > 3000;
+
+
+CREATE TRIGGER emp_audit
+ON Employee1
+AFTER INSERT  
+as 
+begin
+
+select * from inserted
+end
+
+
+work is not completed i will upload remaining questions on tommorrow
