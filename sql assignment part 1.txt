@@ -103,5 +103,3 @@ begin
 select * from inserted
 end
 
-
-work is not completed i will upload remaining questions on tommorrow
